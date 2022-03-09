@@ -18,4 +18,20 @@ table, th, td {
 
 .button-container{
     border: 1px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#flip{
+    background: blue;
+    color: white;
+}
+
+#clear{
+    background: orange;
+    color: white;
+}
+
+#clear:hover, #flip:hover {
+    color: red;
 }
