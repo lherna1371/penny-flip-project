@@ -1,5 +1,19 @@
 let headsCount = 0;
+if(localStorage.getItem('headsCount') !== null){
+    headsCount = parseInt(localStorage.getItem('headsCount'));
+};
+
 let tailsCount = 0;
+if(localStorage.getItem('tailsCount') !== null){
+    tailsCount = parseInt(localStorage.getItem('tailsCount'));
+};
+
+
+console.log(headsCount, tailsCount)
+
+// call function to update table values 
+scoreTable()
+
 
 // event listener for flip button 
 document.querySelector("#flip").addEventListener('click', function(e){
@@ -28,13 +42,30 @@ document.querySelector("#flip").addEventListener('click', function(e){
         tailsCount++;
     }
     
-
-
+    // store results in localStorage
+    localStorage.setItem('headsCount', headsCount);
+    localStorage.setItem('tailsCount', tailsCount);
     
-    let total = headsCount + tailsCount;
+    // call function to update table values 
+    scoreTable()
 
-    let percentageHeads = Math.round(headsCount/total * 100);
-    let percentageTails = Math.round(tailsCount/total * 100);
+})
+
+
+
+
+function scoreTable(){
+       
+    let total = headsCount + tailsCount;
+    let percentageHeads = 0;
+    let percentageTails = 0;
+
+    if (total > 0) {
+        percentageHeads = Math.round(headsCount/total * 100);
+        percentageTails = Math.round(tailsCount/total * 100);
+    }
+
+
 
 
     document.querySelector(".heads-counter").textContent = headsCount;
@@ -42,13 +73,7 @@ document.querySelector("#flip").addEventListener('click', function(e){
     document.querySelector(".heads-percentage").textContent = percentageHeads + '%';
     document.querySelector(".tails-percentage").textContent = percentageTails + '%';
 
-    
-
-    // store results in localStorage
-
-
-
-})
+}
 
 
 // event listener for clear button
